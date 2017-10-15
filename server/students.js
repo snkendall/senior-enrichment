@@ -2,8 +2,10 @@ const api = require('express').Router()
 const db = require('../db')
 const {Student} = require('../db/models')
 
+module.exports = api;
+
 //Navigate to students
-api.get('/students/:studentId', (req, res, next) => {
+api.get('/:studentId', (req, res, next) => {
     const studentId = req.body.params.studentId;
     Student.findAll({
         where: {
@@ -14,21 +16,23 @@ api.get('/students/:studentId', (req, res, next) => {
     .catch(next)
 })
 
-api.get('/students', (req, res, next) => {
+api.get('/', (req, res, next) => {
     Student.findAll()
     .then(students => res.json({students}))
     .catch(next)
 })
 
+// curl -H "Content-Type: application/json" -X POST -d '{"name":"kate","email":"1234@aol.com"}' http://localhost:1337/api/students
+
 //Create students
-api.post('/students', (req, res, next) => {
+api.post('/', (req, res, next) => {
     Student.create(req.body)
     .then(student => res.json(student))
     .catch(next)
 })
 
 //Update students
-api.put('/students/:studentId', (req, res, next) => {
+api.put('/:studentId', (req, res, next) => {
     const studentId = req.body.params.studentId;
     const updateInfo = req.body.data
     Student.findOne({
@@ -42,7 +46,7 @@ api.put('/students/:studentId', (req, res, next) => {
 })
 
 //Delete a student
-api.delete('/students/:studentId', (req, res, next) => {
+api.delete('/:studentId', (req, res, next) => {
     const studentId = req.body.params.studentId;
     Student.destroy({
         where: {
