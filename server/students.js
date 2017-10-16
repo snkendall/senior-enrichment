@@ -22,7 +22,7 @@ api.get('/', (req, res, next) => {
     .catch(next)
 })
 
-// curl -H "Content-Type: application/json" -X POST -d '{"name":"kate","email":"1234@aol.com"}' http://localhost:1337/api/students
+// curl -H "Content-Type: application/json" -X DELETE -d '{"name":"kateTheGREAT","email":"1234@aol.com"}' http://localhost:1337/api/students/1
 
 //Create students
 api.post('/', (req, res, next) => {
@@ -33,14 +33,14 @@ api.post('/', (req, res, next) => {
 
 //Update students
 api.put('/:studentId', (req, res, next) => {
-    const studentId = req.body.params.studentId;
-    const updateInfo = req.body.data
+   const studentId = req.body.params.studentId;
     Student.findOne({
         where: {
             id: studentId
         }
     })
-    .then(student => student.update({ updateInfo }))
+    //.then(student => {console.log(student.dataValues)})
+    .then(student => student.update(req.body))
     .then(student => res.json(student))
     .catch(next)
 })

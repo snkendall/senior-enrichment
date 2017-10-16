@@ -22,8 +22,6 @@ api.get('/', (req, res, next) => {
 	.catch(next)
 })
 
-// curl -H "Content-Type: application/json" -X PUT -d '{"name":"HighSchoolHigh","image":"REALbad"}' http://localhost:1337/api/campuses
-
 //Create a new campus
 api.post('/', (req, res, next) => {
     Campus.create(req.body)
@@ -32,17 +30,14 @@ api.post('/', (req, res, next) => {
 })
 
 //Update a campus
-api.put('/1', (req, res, next) => {
-    //const campusId = req.body.params.campusId;
-    // Campus.findAll({
-    //     where: {
-    //         id: 1
-    //     }
-    // })
-
-    ///STUCK HEREEEEE
-    req.campus.update(req.body)
-    .then(campus => campus.update({ updateInfo }))
+api.put('/:campusId', (req, res, next) => {
+    const campusId = req.body.params.campusId;
+    Campus.findOne({
+        where: {
+            id: campusId
+        }
+    })
+    .then(campus => campus.update(req.body))
     .then(campus => res.json(campus))
     .catch(next)
 })
