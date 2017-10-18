@@ -1,0 +1,1 @@
+// see details about a campus on the Single Campus view, including that campus's students

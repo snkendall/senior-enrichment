@@ -39,7 +39,6 @@ api.put('/:studentId', (req, res, next) => {
             id: studentId
         }
     })
-    //.then(student => {console.log(student.dataValues)})
     .then(student => student.update(req.body))
     .then(student => res.json(student))
     .catch(next)

@@ -1,0 +1,1 @@
+// see details about a student on the Single Student view, including that student's campus
