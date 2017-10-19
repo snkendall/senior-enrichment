@@ -1,6 +1,6 @@
 const Campus = require('./models/campus');
-const Student = require('./models/student');
-const db = require('db');
+const Student = require('./models/students');
+const db = require('./');
 
 const campuses = [{
   name: 'Uranus',
@@ -18,17 +18,20 @@ const campuses = [{
 const students = [{
   name: 'Ashi',
   email: 'ashi@ashi.io',
-  image: 'https://cloud.fullstackacademy.com/ashi.jpg?mtime=20160613103128'
+  image: 'https://cloud.fullstackacademy.com/ashi.jpg?mtime=20160613103128',
+  campusId: 4
 },
 {
   name: 'Emily',
   email: 'emily@ylime.com',
-  image: 'https://pbs.twimg.com/profile_images/703752189332889601/qHrbU_gg.jpg'
+  image: 'https://pbs.twimg.com/profile_images/703752189332889601/qHrbU_gg.jpg',
+  campusId: 4
 },
 {
   name: 'Karen',
   email: 'karen@foundations.com',
-  image: 'https://cloud.fullstackacademy.com/Karen-M.jpg?mtime=20160511113353'
+  image: 'https://cloud.fullstackacademy.com/Karen-M.jpg?mtime=20160511113353',
+  campusId: 5
 }]
 
 const seed = () =>

@@ -24,6 +24,8 @@ api.get('/', (req, res, next) => {
 })
 
 //curl -H "Content-Type: application/json" -X POST -d '{"name":"Uranus","image":"http://tbacontks.weebly.com/uploads/1/1/1/1/11113749/9399660.png?220"}' http://localhost:1337/api/campuses
+//curl -H "Content-Type: application/json" -X POST -d '{"name":"Mars","image":"http://tbacontks.weebly.com/uploads/1/1/1/1/11113749/5133215.png?213"}' http://localhost:1337/api/campuses 
+//curl -H "Content-Type: application/json" -X POST -d '{"name":"Jupiter","image":"http://tbacontks.weebly.com/uploads/1/1/1/1/11113749/4987312.png?207"}' http://localhost:1337/api/campuses
 
 //Create a new campus
 api.post('/', (req, res, next) => {
@@ -34,7 +36,7 @@ api.post('/', (req, res, next) => {
 
 //Update a campus
 api.put('/:campusId', (req, res, next) => {
-    const campusId = req.body.params.campusId;
+    const campusId = req.params.campusId;
     Campus.findOne({
         where: {
             id: campusId
@@ -47,7 +49,7 @@ api.put('/:campusId', (req, res, next) => {
 
 //Delete a campus
 api.delete('/:campusId', (req, res, next) => {
-    const campusId = req.body.params.campusId;
+    const campusId = req.params.campusId;
     Campus.destroy({
         where: {
             id: campusId

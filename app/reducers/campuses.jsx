@@ -72,8 +72,8 @@ export const updateExistingCampus = campus => {
 }
 export const deleteExistingCampus = campus => {
     return dispatch => {
-        axios.delete(`/api/campuses/${campus.id}`, campus)
-        .then(({data}) => dispatch(deleteCampus(data.campus)))
+        dispatch(deleteCampus(campus));
+        axios.delete(`/api/campuses/${campus.id}`)
         .catch(err => console.error('Failed to delete campus', err))
     }
 }

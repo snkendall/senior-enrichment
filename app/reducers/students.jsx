@@ -69,8 +69,8 @@ export const updateExistingStudent = student => {
 }
 export const deleteExistingStudent = student => {
     return dispatch => {
-        axios.delete(`/api/students/${student.id}`, student)
-        .then(({data}) => dispatch(deleteStudent(data.student)))
+        dispatch(deleteStudent(student))
+        axios.delete(`/api/students/${student.id}`)
         .catch(err => console.error('Failed to delete student', err))
     }
 }

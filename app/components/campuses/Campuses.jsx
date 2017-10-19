@@ -4,12 +4,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {createNewCampus, updateExistingCampus, deleteExistingCampus} from '../../reducers/campuses';
 import {NavLink} from 'react-router-dom'
-//import CampusLink from './CampusLink';
+
 //import {fetchCampuses} from '../../reducers/campuses'
 
 class AllCampuses extends Component {
 
+    // constructor(props) {
+    //     super(props);
+    //     this.removeCampus = this.removeCampus.bind(this);
+    // }
+
+    // removeCampus (event) {
+    //     const {deleteExistingCampus} = this.props;
+    //     console.log(event.target.value)
+    //     // event.stopPropagation();
+    //     // deleteExistingCampus(event.target.value)
+    // }
+
     render() {
+        const { deleteExistingCampus } = this.props;
         return (
             <div className="container">
                     {this.props.campuses.map(campus => {
@@ -19,6 +32,11 @@ class AllCampuses extends Component {
                                 <NavLink to={`/campuses/${campus.id}`}>
                                     <img className="campus-image" src={campus.image} />
                                 </NavLink>
+                                <button
+                                    className="remove-button"
+                                    onClick={ () => deleteExistingCampus(campus) }>
+                                    <span>X</span>
+                                </button>
                         </div>
                        )
                         })

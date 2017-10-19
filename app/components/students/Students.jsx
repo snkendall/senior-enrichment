@@ -7,6 +7,7 @@ import {NavLink} from 'react-router-dom'
 class AllStudents extends Component {
 
     render() {
+        const { deleteExistingStudent } = this.props;
         return (
             <div className="container">
                     {this.props.students.map(student => {
@@ -16,6 +17,11 @@ class AllStudents extends Component {
                                 <NavLink to={`/students/${student.id}`}>
                                     <img className="student-image" src={student.image} />
                                 </NavLink>
+                                <button
+                                    className="remove-button"
+                                    onClick={ () => deleteExistingStudent(student) }>
+                                    <span>X</span>
+                                </button>
                         </div>
                        )
                         })
