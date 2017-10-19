@@ -4,7 +4,7 @@ const {Campus} = require('../db/models')
 
 module.exports = api;
 
-//Navigate to pages
+//Navigate to singe campus pages
 api.get('/:campusId', (req, res, next) => {
 	const campusId = req.body.params.campusId
 	Campus.findAll({
@@ -16,11 +16,14 @@ api.get('/:campusId', (req, res, next) => {
 	.catch(next)
 })
 
+//Navigate to all campuses page
 api.get('/', (req, res, next) => {
 	Campus.findAll()
 	.then(campuses => res.json({campuses}))
 	.catch(next)
 })
+
+//curl -H "Content-Type: application/json" -X POST -d '{"name":"Uranus","image":"http://tbacontks.weebly.com/uploads/1/1/1/1/11113749/9399660.png?220"}' http://localhost:1337/api/campuses
 
 //Create a new campus
 api.post('/', (req, res, next) => {

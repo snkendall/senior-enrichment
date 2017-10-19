@@ -1,14 +1,18 @@
-import React from './react';
-import {NavLink} from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-const image = '../../images/cuteCampusesLogo.jpeg';
+import campusImage from '../../images/cuteCampusesLogo.jpeg';
+import studentImage from '../../images/studentsLogo.jpg'
+const Home = () =>  (
+            <div>
+                <NavLink to={'/campuses'}>
+                    <img className='campusesLogo' src={campusImage} />
+                </NavLink>
+                <NavLink to={'/students'}>
+                    <img className='studentsLogo' src={studentImage} />
+                </NavLink>
+            </div>
+) 
 
-export default function Home(){
-    return (
-        <div>
-            <NavLink to={'/campuses'}>
-                <img className='campusesLogo' src={image} />
-            </NavLink>
-        </div>    
-    )
-}
+
+export default Home;

@@ -1,15 +1,22 @@
 // can create a campus
 // can edit a campus's info, including adding/removing a student to/from that campus
 // can delete a campus
-import axios from './axios';
+import axios from 'axios';
 
 //ACTION-TYPE
+//const GET_SINGLE_CAMPUS = 'GET_SINGLE_CAMPUS';
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const CREATE_CAMPUS = 'CREATE_CAMPUS';
 const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 const CHANGE_STUDENT = 'CHANGE_STUDENT';
 const DELETE_CAMPUS = 'DELETE_CAMPUS';
 //ACTION-CREATORS 
+// function getSingleCampus(campus){
+//     return {
+//         type: GET_SINGLE_CAMPUS,
+//         campus: campus
+//     }
+// }
 function getCampuses(campuses){
     return {
         type: GET_CAMPUSES,
@@ -23,7 +30,7 @@ function getCampuses(campuses){
          campus: campus
      }
  }
- function updatecampus(campus) {
+ function updateCampus(campus) {
     return {
         type: UPDATE_CAMPUS,
         campus: campus
@@ -43,34 +50,37 @@ function deleteCampus(campus) {
 }
 //THUNK-CREATORS
 
+
 export const fetchCampuses = () => {
     return dispatch => {
-        axios.get('/')
-        .then(campuses => dispatch(getCampuses(campuses)))
+        axios.get('/api/campuses')
+        .then(({data}) => {
+            dispatch(getCampuses(data.campuses))
+        } )
         .catch(err => console.error('Failed to fetch campused', err))
     }
 }
 
 export const createNewCampus = campus => {
     return  dispatch => {
-        axios.post('/campuses', campus)
-        .then(campus => dispatch(createCampus(campus)))
+        axios.post('/api/campuses', campus)
+        .then(({data}) => dispatch(createCampus(data.campus)))
         .catch(err => console.error('Failed to create campus', err))
     }
 
 }
 export const updateExistingCampus = campus => {
     return  dispatch => {
-        axios.put(`/campuses/${campus.id}`, campus)
-        .then(campus => dispatch(updateCampus(campus)))
+        axios.put(`/api/campuses/${campus.id}`, campus)
+        .then(({data}) => dispatch(updateCampus(data.campus)))
         .catch(err => console.error('Failed to update campus', err))
     }
 
 }
 export const deleteExistingCampus = campus => {
     return dispatch => {
-        axios.delete(`/campuses/${campus.id}`, campus)
-        .then(campus => dispatch(deleteCampus(campus)))
+        axios.delete(`/api/campuses/${campus.id}`, campus)
+        .then(({data}) => dispatch(deleteCampus(data.campus)))
         .catch(err => console.error('Failed to delete campus', err))
     }
 }
@@ -85,12 +95,12 @@ export default function campusesReducer(campuses = [], action){
             return [...campuses, action.campus];
         
         case UPDATE_CAMPUS:
-            return campuses.map(campus =>(
+            return campuses.map(campus => (
                 action.campus.id === campus.id ? action.campus : campus
             ))
 
         case DELETE_CAMPUS:
-            return campuses.filter(campus => 
+            return campuses.filter(campus =>
                 campus.id !== action.campus.id
             )
 

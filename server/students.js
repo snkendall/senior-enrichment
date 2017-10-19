@@ -16,13 +16,14 @@ api.get('/:studentId', (req, res, next) => {
     .catch(next)
 })
 
+//Navigate to all students
 api.get('/', (req, res, next) => {
     Student.findAll()
     .then(students => res.json({students}))
     .catch(next)
 })
 
-// curl -H "Content-Type: application/json" -X DELETE -d '{"name":"kateTheGREAT","email":"1234@aol.com"}' http://localhost:1337/api/students/1
+// curl -H "Content-Type: application/json" -X POST -d '{"name":"Karen","email":"karen@foundations.com","image":"https://cloud.fullstackacademy.com/Karen-M.jpg?mtime=20160511113353"}' http://localhost:1337/api/students
 
 //Create students
 api.post('/', (req, res, next) => {

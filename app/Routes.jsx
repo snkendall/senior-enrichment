@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import axios from 'axios';
+import { Router, Route, Switch } from 'react-router-dom';
+import history from './history';
 import { connect } from 'react-redux';
+import Root from './components/Root';
+import Home from './components/Home';
 import Campuses from './components/campuses/Campuses';
 import Students from './components/students/Students';
 import SingleCampus from './components/campuses/SingleCampus';
-import SingleStudent from './components//SingleStudent';
-import {fetchCampuses} from './reducers/campuses'
+// import SingleStudent from './components/students/SingleStudent';
+import {fetchCampuses} from './reducers/campuses';
+import {fetchStudents} from './reducers/students';
 
 
-// Views: as a user I...
 class Routes extends Component {
 
     componentDidMount(){
@@ -18,15 +20,14 @@ class Routes extends Component {
 
     render() {
         return (
-            <Router >
-                <Navbar />
+            <Router history={history}>
                 <Root>
                     <Switch>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/campuses" component={Campuses} />
                         <Route path="/campuses/:campusId" component={SingleCampus} />
-                        <Route exact path="/students" componenet={Students} />
-                        <Route path="/students/:studentId" component={SingleStudent} />
+                        <Route exact path="/students" component={Students} />
+                        {/* <Route path="/students/:studentId" component={SingleStudent} /> */}
                     </Switch>
                 </Root>
             </Router>
@@ -39,6 +40,7 @@ const mapStateToProps = null
 const mapDispatchToProps = dispatch => ({
     fectchData: () => {
         dispatch(fetchCampuses())
+        dispatch(fetchStudents())
     }
 })
 

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import students from './students';
-import campuses from './campuses '
+import campuses from './campuses';
 
 // const initialState = {}
 
