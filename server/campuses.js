@@ -12,7 +12,7 @@ api.get('/:campusId', (req, res, next) => {
 			id: campusId
 		}
 	})
-	.then(campuses => res.json({campuses}))
+	.then(campus => res.json({campus}))
 	.catch(next)
 })
 

@@ -4,19 +4,13 @@
 import axios from 'axios';
 
 //ACTION-TYPE
-//const GET_SINGLE_CAMPUS = 'GET_SINGLE_CAMPUS';
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const CREATE_CAMPUS = 'CREATE_CAMPUS';
 const UPDATE_CAMPUS = 'UPDATE_CAMPUS';
 const CHANGE_STUDENT = 'CHANGE_STUDENT';
 const DELETE_CAMPUS = 'DELETE_CAMPUS';
 //ACTION-CREATORS 
-// function getSingleCampus(campus){
-//     return {
-//         type: GET_SINGLE_CAMPUS,
-//         campus: campus
-//     }
-// }
+
 function getCampuses(campuses){
     return {
         type: GET_CAMPUSES,
@@ -49,7 +43,6 @@ function deleteCampus(campus) {
     }
 }
 //THUNK-CREATORS
-
 
 export const fetchCampuses = () => {
     return dispatch => {

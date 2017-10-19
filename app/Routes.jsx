@@ -7,7 +7,7 @@ import Home from './components/Home';
 import Campuses from './components/campuses/Campuses';
 import Students from './components/students/Students';
 import SingleCampus from './components/campuses/SingleCampus';
-// import SingleStudent from './components/students/SingleStudent';
+import SingleStudent from './components/students/SingleStudent';
 import {fetchCampuses} from './reducers/campuses';
 import {fetchStudents} from './reducers/students';
 
@@ -27,7 +27,7 @@ class Routes extends Component {
                         <Route exact path="/campuses" component={Campuses} />
                         <Route path="/campuses/:campusId" component={SingleCampus} />
                         <Route exact path="/students" component={Students} />
-                        {/* <Route path="/students/:studentId" component={SingleStudent} /> */}
+                        <Route path="/students/:studentId" component={SingleStudent} />
                     </Switch>
                 </Root>
             </Router>
