@@ -56,16 +56,19 @@ export const fetchCampuses = () => {
 
 export const createNewCampus = campus => {
     return  dispatch => {
+        dispatch(createCampus(campus))
         axios.post('/api/campuses', campus)
-        .then(({data}) => dispatch(createCampus(data.campus)))
+        //.then(({data}) => dispatch(createCampus(data.campus)))
         .catch(err => console.error('Failed to create campus', err))
     }
 
 }
 export const updateExistingCampus = campus => {
     return  dispatch => {
+        dispatch(updateCampus(campus))
+        console.log('campusId:', campus.id);
         axios.put(`/api/campuses/${campus.id}`, campus)
-        .then(({data}) => dispatch(updateCampus(data.campus)))
+        //.then(({data}) => 
         .catch(err => console.error('Failed to update campus', err))
     }
 

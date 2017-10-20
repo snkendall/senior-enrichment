@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
+import EditCampus from './EditCampus';
 
 class SingleCampus extends Component {
-     
+
     render() {
         const {campus, students} = this.props;
         if (!campus) return <div />
@@ -23,6 +24,7 @@ class SingleCampus extends Component {
                                 </div>
                     )
                 })}
+                <EditCampus campus={campus}/>
             </div>
         )
 

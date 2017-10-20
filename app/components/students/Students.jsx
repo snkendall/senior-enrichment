@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {createNewStudent, updateExistingStudent, deleteExistingStudent} from '../../reducers/students';
-import {NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom';
+import AddStudent from './AddStudent';
 
 class AllStudents extends Component {
 
@@ -26,6 +27,7 @@ class AllStudents extends Component {
                        )
                         })
                     }
+                <AddStudent />
             </div>
         )
     }

@@ -6,7 +6,7 @@ module.exports = api;
 
 //Navigate to singe campus pages
 api.get('/:campusId', (req, res, next) => {
-	const campusId = req.body.params.campusId
+	const campusId = req.params.campusId
 	Campus.findAll({
 		where: {
 			id: campusId
@@ -37,13 +37,10 @@ api.post('/', (req, res, next) => {
 //Update a campus
 api.put('/:campusId', (req, res, next) => {
     const campusId = req.params.campusId;
-    Campus.findOne({
-        where: {
-            id: campusId
-        }
-    })
-    .then(campus => campus.update(req.body))
-    .then(campus => res.json(campus))
+    Campus.findById(campusId)
+    .then(campus => console.log(campus))
+    //.then(campus => campus.update(req.body))
+    //.then(campus => res.json(campus))
     .catch(next)
 })
 

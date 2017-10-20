@@ -53,16 +53,18 @@ export const fetchStudents = () => {
 
 export const createNewStudent = student => {
     return  dispatch => {
+        dispatch(createStudent(student))
         axios.post('/api/students', student)
-        .then(({data}) => dispatch(createStudent(data.student)))
+        //.then(({data}) => dispatch(createStudent(data.student)))
         .catch(err => console.error('Failed to create student', err))
     }
 
 }
 export const updateExistingStudent = student => {
     return  dispatch => {
+        dispatch(updateStudent(student))
         axios.put(`/api/students/${student.id}`, student)
-        .then(({data}) => dispatch(updateStudent(data.student)))
+   // .then(({data}) => 
         .catch(err => console.error('Failed to update student', err))
     }
 

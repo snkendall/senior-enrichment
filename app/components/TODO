@@ -1,0 +1,6 @@
+
+find out why student's name is 'undefined' when the name was literally just console.logged, and updated in the database
+I think it's something to do with the async chaining not working
+
+figure out how to wait for the campus/student to be created before updating the state
+fix form bug on create student

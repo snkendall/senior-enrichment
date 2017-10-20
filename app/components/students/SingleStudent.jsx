@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
+import EditStudent from './EditStudent';
 
 class SingleStudent extends Component {
 
     render() {
         const {student, campuses} = this.props;
-        console.log('student', student)
         if (!student) return <div />;
         const [campus] = campuses.filter(campus => student.campusId === campus.id);
-        console.log('campus', campus)
+        console.log('Updated: ', student.name)
         return (
             <div>
                 <h2>{student.name}</h2>
@@ -23,6 +23,7 @@ class SingleStudent extends Component {
                                 <img className="campus-logo" src={campus.image} />
                                 </NavLink>
                         <h4>Contact {student.name} at <a href="#">{student.email}</a></h4>
+                        <EditStudent student={student} />
             </div>
         )
 

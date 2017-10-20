@@ -2,29 +2,18 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {createNewCampus, updateExistingCampus, deleteExistingCampus} from '../../reducers/campuses';
-import {NavLink} from 'react-router-dom'
+import {updateExistingCampus, deleteExistingCampus} from '../../reducers/campuses';
+import {NavLink} from 'react-router-dom';
+import AddCampus from './AddCampus';
 
-//import {fetchCampuses} from '../../reducers/campuses'
 
 class AllCampuses extends Component {
-
-    // constructor(props) {
-    //     super(props);
-    //     this.removeCampus = this.removeCampus.bind(this);
-    // }
-
-    // removeCampus (event) {
-    //     const {deleteExistingCampus} = this.props;
-    //     console.log(event.target.value)
-    //     // event.stopPropagation();
-    //     // deleteExistingCampus(event.target.value)
-    // }
 
     render() {
         const { deleteExistingCampus } = this.props;
         return (
             <div className="container">
+
                     {this.props.campuses.map(campus => {
                        return (
                         <div key={campus.id}>
@@ -41,13 +30,14 @@ class AllCampuses extends Component {
                        )
                         })
                     }
+                <AddCampus />
             </div>
         )
     }
 }
 
 const mapStateToProps = ({campuses}) => ({campuses});
-const mapDispatchToProps = {createNewCampus, updateExistingCampus, deleteExistingCampus}
+const mapDispatchToProps = {updateExistingCampus, deleteExistingCampus}
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllCampuses);
 
