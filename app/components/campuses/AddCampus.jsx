@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createNewCampus } from '../../reducers/campuses';
-//import history from '../../history';
 
 class CampusForm extends Component{
     constructor(props) {
@@ -32,17 +31,20 @@ class CampusForm extends Component{
     render(){
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Name:
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange} />
-                </label>
-                <label>
-                    Image:
-                    <input type="text" value={this.state.image} onChange={this.handleImageChange} />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
+            <div>
+                <h3>Add a Campus!</h3>
+                <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Name:
+                        <input type="text" value={this.state.name} onChange={this.handleNameChange} />
+                    </label>
+                    <label>
+                        Image:
+                        <input type="text" value={this.state.image} onChange={this.handleImageChange} />
+                    </label>
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>
         )
     }
 }

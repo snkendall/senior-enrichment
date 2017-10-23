@@ -4,3 +4,7 @@ I think it's something to do with the async chaining not working
 
 figure out how to wait for the campus/student to be created before updating the state
 fix form bug on create student
+
+make a seperate change campus component.
+make a seperate drop student componenet
+

@@ -6,13 +6,12 @@ import studentImage from '../../images/studentsLogo.jpg'
 const Home = () =>  (
             <div>
                 <NavLink to={'/campuses'}>
-                    <img className='campusesLogo' src={campusImage} />
+                    <img className="campusesLogo" src={campusImage} />
                 </NavLink>
                 <NavLink to={'/students'}>
-                    <img className='studentsLogo' src={studentImage} />
+                    <img className="studentsLogo" src={studentImage} />
                 </NavLink>
             </div>
-) 
-
+)
 
 export default Home;

@@ -11,10 +11,10 @@ const Campus = require('./campus');
 // This is also probably a good place for you to set up your associations
 
 Students.belongsTo(Campus);
-Campus.hasMany(Students, {
-	onDelete: 'cascade',
-	hooks: true
-});
+Campus.hasMany(Students, 
+	{onDelete: 'cascade',
+	hooks: true}
+);
 
 module.exports = {
 	Students,

@@ -1,33 +1,30 @@
-// see details about a student on the Single Student view, including that student's campus
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import _ from 'lodash';
 import EditStudent from './EditStudent';
 
-class SingleStudent extends Component {
+const SingleStudent = ({student, campuses}) => {
 
-    render() {
-        const {student, campuses} = this.props;
-        if (!student) return <div />;
+        if (!student) return null
         const [campus] = campuses.filter(campus => student.campusId === campus.id);
-        console.log('Updated: ', student.name)
         return (
             <div>
                 <h2>{student.name}</h2>
                     <img className="single-campus-image" src={student.image} />
-                        <h3 className="student-campus">
-                            {student.name} is a proud student of {campus.name}
-                            </h3>
+                        {campus &&
+                            <div>
+                                <h3 className="student-campus">
+                                    {student.name} is a proud student of {campus.name}
+                                </h3>
                                 <NavLink to={`/campus/${campus.id}`}>
                                 <img className="campus-logo" src={campus.image} />
                                 </NavLink>
+                            </div>}
                         <h4>Contact {student.name} at <a href="#">{student.email}</a></h4>
                         <EditStudent student={student} />
             </div>
         )
-
-    }
 }
 
 const mapStateToProps = ({campuses, students}, ownProps)  => {

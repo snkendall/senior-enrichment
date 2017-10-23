@@ -1,15 +1,12 @@
 import axios from 'axios';
 
-// can create a student
-// can edit a student's info, including the campus that student is assigned to
-// can delete a student
-
 //ACTION-TYPE
 const GET_STUDENTS = 'GET_STUDENTS';
 const CREATE_STUDENT = 'CREATE_STUDENT';
 const UPDATE_STUDENT = 'UPDATE_STUDENT';
 const CHANGE_CAMPUS = 'CHANGE_CAMPUS';
 const DELETE_STUDENT = 'DELETE_STUDENT';
+
 //ACTION-CREATORS 
 function getStudents(students) {
     return {
@@ -41,6 +38,7 @@ function deleteStudent(student) {
         student: student
     }
 }
+
 //THUNK-CREATORS
 
 export const fetchStudents = () => {
@@ -53,9 +51,9 @@ export const fetchStudents = () => {
 
 export const createNewStudent = student => {
     return  dispatch => {
-        dispatch(createStudent(student))
+        //dispatch(createStudent(student))
         axios.post('/api/students', student)
-        //.then(({data}) => dispatch(createStudent(data.student)))
+        .then(({data}) => dispatch(createStudent(data)))
         .catch(err => console.error('Failed to create student', err))
     }
 
@@ -64,8 +62,8 @@ export const updateExistingStudent = student => {
     return  dispatch => {
         dispatch(updateStudent(student))
         axios.put(`/api/students/${student.id}`, student)
-   // .then(({data}) => 
-        .catch(err => console.error('Failed to update student', err))
+            // .then(({data: s}) => dispatch(updateStudent(s)))
+            .catch(err => console.error('Failed to update student', err))
     }
 
 }
@@ -76,6 +74,7 @@ export const deleteExistingStudent = student => {
         .catch(err => console.error('Failed to delete student', err))
     }
 }
+
 //REDUCER
 export default function studentsReducer(students = [], action) {
     switch (action.type){
@@ -84,10 +83,10 @@ export default function studentsReducer(students = [], action) {
 
         case CREATE_STUDENT:
             return [...students, action.student];
-        
+
         case UPDATE_STUDENT:
             return students.map(student => (
-                action.student.id === student.id ? action.student : student
+                action.student.id === student.id ? Object.assign({}, student, action.student) : student
             ))
 
         case DELETE_STUDENT:

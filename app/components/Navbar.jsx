@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import Students from './students/Students';
-import Campuses from './campuses/Campuses'
-const image = '../../images/SchoolLogo.jpg'
+const image = '../../images/SchoolLogo.jpg';
 
 const Navbar = () => {
         return (

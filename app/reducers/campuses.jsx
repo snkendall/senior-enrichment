@@ -1,6 +1,3 @@
-// can create a campus
-// can edit a campus's info, including adding/removing a student to/from that campus
-// can delete a campus
 import axios from 'axios';
 
 //ACTION-TYPE
@@ -89,7 +86,7 @@ export default function campusesReducer(campuses = [], action){
 
         case CREATE_CAMPUS:
             return [...campuses, action.campus];
-        
+
         case UPDATE_CAMPUS:
             return campuses.map(campus => (
                 action.campus.id === campus.id ? action.campus : campus

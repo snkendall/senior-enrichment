@@ -9,14 +9,13 @@ class StudentForm extends Component{
         this.state = {
             name: '',
             email: '',
-            image: ''
-            // ,
-            // campusId: ''
+            image: '',
+            campusId: ''
         }
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handleImageChange = this.handleImageChange.bind(this);
-        //this.handleCampusChange = this.handleImageChange.bind(this);
+        this.handleCampusChange = this.handleCampusChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -29,15 +28,16 @@ class StudentForm extends Component{
     handleImageChange(event){
         this.setState({image: event.target.value})
     }
-    // handleCampusChange(event){
-    //     this.setState({campusId: event.target.value})
-    // }
+    handleCampusChange(event){
+        event.target.value > 0
+        ? this.setState({campusId: event.target.value})
+        : alert('Please select a campus')
+    }
     handleSubmit(event){
         event.preventDefault();
         const student = this.state;
         this.props.createNewStudent(student);
         this.setState({name: '', email: '', image: ''})
-        //history.push('/students');
     }
 
     render(){
@@ -58,14 +58,15 @@ class StudentForm extends Component{
                         Image:
                         <input type="text" value={this.state.image} onChange={this.handleImageChange} />
                     </label>
-                    {/* <label>
+                    <label>
                         Campus:
                         <select value={this.state.campusId} onChange={this.handleCampusChange}>
+                            <option value={-1}>Select a campus</option>
                             {campuses.map(campus => (
                                 <option key={campus.id} value={campus.id}>{campus.name}</option>
                             ))}
                         </select>
-                    </label> */}
+                    </label>
                     <input type="submit" value="Submit" />
                 </form>
             </div>
